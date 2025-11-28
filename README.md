@@ -15,7 +15,7 @@ We have prepared a Google Colab notebook that automates the setup, deployment, a
 
 Click the button below to open the workshop notebook in Google Colab:
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sangalo20/Severless-agents-cloudrun/blob/main/workshop_setup.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sangalo20/Severless-agents-cloudrun/blob/main/serverless_agents.ipynb)
 
 **Note**: The link above is now configured for your repository.
 
@@ -28,4 +28,4 @@ Click the button below to open the workshop notebook in Google Colab:
 
 - `librarian/`: Source code for the ingestion agent.
 - `guide/`: Source code for the chat agent.
-- `workshop_setup.ipynb`: The notebook to run the workshop.
+- `serverless_agents.ipynb`: The notebook to run the workshop.
