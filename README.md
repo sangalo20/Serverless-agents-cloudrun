@@ -1,4 +1,4 @@
-# Serverless Agents on Cloud Run Workshop
+# Serverless Agents on Cloud Run
 
 Welcome to the Serverless Agents workshop! In this session, you will build a production-ready "Micro-Agent" system using Google Cloud Run, Vertex AI (Gemini 2.5 Flash), and Eventarc.
 
