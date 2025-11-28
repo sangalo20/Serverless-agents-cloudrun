@@ -1,0 +1,4 @@
+flask
+gunicorn
+google-cloud-firestore
+google-cloud-aiplatform
