@@ -18,7 +18,7 @@ LOCATION = os.environ.get("GOOGLE_CLOUD_REGION", "us-central1")
 vertexai.init(project=PROJECT_ID, location=LOCATION)
 
 # TODO: Update this to the correct model ID if "gemini-2.5-flash-001" is not the exact string
-MODEL_ID = "gemini-flash-latest" 
+MODEL_ID = "gemini-2.5-flash" 
 
 @app.route("/", methods=["POST"])
 def ingest():
