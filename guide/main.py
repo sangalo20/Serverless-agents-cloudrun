@@ -87,7 +87,7 @@ def chat():
         # Save back to Firestore (merge=True to create if not exists)
         history_ref.set({"turns": history}, merge=True)
 
-        return jsonify({"response": response_text})
+        return jsonify({"answer": response_text})
 
     except Exception as e:
         print(f"Error: {e}")
