@@ -14,7 +14,7 @@ PROJECT_ID = os.environ.get("GOOGLE_CLOUD_PROJECT")
 LOCATION = os.environ.get("GOOGLE_CLOUD_REGION", "us-central1")
 vertexai.init(project=PROJECT_ID, location=LOCATION)
 
-MODEL_ID = "gemini-2.5-flash-001"
+MODEL_ID = "gemini-1.5-flash-001"
 
 @app.route("/chat", methods=["POST"])
 def chat():
