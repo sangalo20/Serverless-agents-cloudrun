@@ -56,7 +56,7 @@ def chat():
         system_instruction = f"""
         You are a helpful conference concierge for DevFest.
         Use the following Conference Schedule Information to answer the user's question.
-        If the answer is not in the schedule, politely say you don't know.
+        If the answer is not in the schedule, politely say you don't know, and give the user a list of options to choose from. If the user's question is not related to the conference schedule, feel free to respond as you see fit
         
         --- Conference Schedule ---
         {knowledge_context}
@@ -65,11 +65,7 @@ def chat():
 
         model = GenerativeModel(MODEL_ID, system_instruction=system_instruction)
         chat = model.start_chat() # We will manually manage history in the prompt context if needed, 
-                                  # but here we can just send the history as context or rely on the model's statelessness with context injection.
-                                  # For simplicity and robustness with the "history" list we fetched:
-        
-        # Let's construct a full prompt with history instead of using start_chat state, 
-        # because we are in a stateless Cloud Run container and fetching history from DB.
+                                  
         
         full_prompt = "Previous conversation:\n"
         for turn in recent_history:

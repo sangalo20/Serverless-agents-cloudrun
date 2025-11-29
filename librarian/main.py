@@ -17,7 +17,6 @@ PROJECT_ID = os.environ.get("GOOGLE_CLOUD_PROJECT")
 LOCATION = os.environ.get("GOOGLE_CLOUD_REGION", "us-central1")
 vertexai.init(project=PROJECT_ID, location=LOCATION)
 
-# TODO: Update this to the correct model ID if "gemini-2.5-flash-001" is not the exact string
 MODEL_ID = "gemini-2.5-flash" 
 
 @app.route("/", methods=["POST"])
@@ -28,8 +27,7 @@ def ingest():
     print("Event received.")
     
     # CloudEvents specification: Content-Type: application/cloudevents+json
-    # However, Eventarc often sends the event as the body.
-    # We'll try to parse the JSON body directly.
+    
     try:
         event = request.get_json()
         if not event:
@@ -40,17 +38,15 @@ def ingest():
         print(f"Event body: {event}")
 
         # Extract bucket and file name from the event
-        # Structure depends on the event type (google.cloud.storage.object.v1.finalized)
-        # Usually it's in 'bucket' and 'name' fields of the data payload
+
         if 'bucket' in event: # Direct GCS notification format
              bucket_name = event['bucket']
              file_name = event['name']
-        elif 'protoPayload' in event: # Audit log format (less common for direct triggers but possible)
-             # This is complex, assume direct notification for workshop simplicity
+        elif 'protoPayload' in event: 
+             
              pass
         else:
-             # Fallback for CloudEvent format where data is nested
-             # This is the standard for Eventarc
+             
              bucket_name = event.get('bucket')
              file_name = event.get('name')
 
@@ -65,7 +61,7 @@ def ingest():
         bucket = storage_client.bucket(bucket_name)
         blob = bucket.blob(file_name)
         
-        # For Gemini Multimodal, we can pass the GCS URI directly!
+        # For Gemini Multimodal, we are passing the GCS URI directly
         # This is much more efficient than downloading bytes.
         gcs_uri = f"gs://{bucket_name}/{file_name}"
         
