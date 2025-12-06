@@ -30,7 +30,7 @@ def chat():
             return jsonify({"error": "Missing session_id or query"}), 400
 
         # 1. Retrieve Knowledge Base
-        kb_ref = db.collection("knowledge_base").document("devfest_schedule")
+        kb_ref = db.collection("knowledge_base").document("latest_knowledge")
         kb_doc = kb_ref.get()
         
         knowledge_context = ""

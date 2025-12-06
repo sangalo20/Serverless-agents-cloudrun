@@ -92,7 +92,7 @@ def ingest():
         print("Summary generated successfully.")
 
         # Save to Firestore
-        doc_ref = db.collection("knowledge_base").document("devfest_schedule")
+        doc_ref = db.collection("knowledge_base").document("latest_knowledge")
         doc_ref.set({
             "summary": summary_text,
             "source_file": gcs_uri,
