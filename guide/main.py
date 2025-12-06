@@ -37,7 +37,7 @@ def chat():
         if kb_doc.exists:
             knowledge_context = kb_doc.to_dict().get("summary", "")
         else:
-            knowledge_context = "No such infrom."
+            knowledge_context = "I have not processed any documents yet. Please upload a PDF to the Knowledge Base bucket to get started."
 
         # 2. Retrieve Chat History (Short-term memory)
         # We'll store history as a list of turns in a single document for simplicity in this workshop

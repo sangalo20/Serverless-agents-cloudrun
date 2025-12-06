@@ -71,7 +71,7 @@ def ingest():
         prompt = """
         You are a helpful research assistant. 
         Analyze the attached document.
-        Extract a structured summary of the of the most important thing in that documment, in the following format:
+        Extract a structured summary of the of the most important thing in that document, in the following format:
         - Context
         - Topics coveredS
         - If there is any action items, list them.
