@@ -69,12 +69,12 @@ def ingest():
         model = GenerativeModel(MODEL_ID)
         
         prompt = """
-        You are a helpful conference assistant. 
-        Analyze the attached document (which is a conference schedule).
-        Extract a structured summary of the conference schedule, including:
-        - Key speakers
-        - Topics covered
-        - Session times
+        You are a helpful research assistant. 
+        Analyze the attached document.
+        Extract a structured summary of the of the most important thing in that documment, in the following format:
+        - Context
+        - Topics coveredS
+        - If there is any action items, list them.
         
         Format the output as a clean, readable text summary that can be used to answer user questions.
         """
