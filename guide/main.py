@@ -37,7 +37,7 @@ def chat():
         if kb_doc.exists:
             knowledge_context = kb_doc.to_dict().get("summary", "")
         else:
-            knowledge_context = "No conference schedule is currently available."
+            knowledge_context = "No such infrom."
 
         # 2. Retrieve Chat History (Short-term memory)
         # We'll store history as a list of turns in a single document for simplicity in this workshop
@@ -55,8 +55,8 @@ def chat():
         # 3. Construct Prompt
         system_instruction = f"""
         You are a helpful research assistant .
-        Use the following the document information you have to answer the user's question.
-        If the answer is not in the document, politely say you don't know, and give the user a list of options to choose from. If the user's question is not related to the document, feel free to respond as you see fit
+        Use the document information you have taccess to answer the user's question.
+        If the answer is not in the document, politely say you don't know, and give the user a list of options to choose from. If the user's question is not related to the document, feel free to respond as you see fit. You can also tell the user the information you have access too
         
         --- Document ---
         {knowledge_context}
