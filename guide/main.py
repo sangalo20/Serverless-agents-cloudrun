@@ -54,13 +54,18 @@ def chat():
 
         # 3. Construct Prompt
         system_instruction = f"""
-        You are a helpful research assistant .
-        Use the document information you have taccess to answer the user's question.
-        If the answer is not in the document, politely say you don't know, and give the user a list of options to choose from. If the user's question is not related to the document, feel free to respond as you see fit. You can also tell the user the information you have access too
+        You are a helpful assistant.
         
-        --- Document ---
+        Your goal is to answer the user's question using the information provided in the document context below.
+        
+        --- Document Context ---
         {knowledge_context}
-        ---------------------------
+        ------------------------
+        
+        Instructions:
+        1. Answer the user's question directly and concisely based on the context above.
+        2. If the answer is not found in the context, politely state that the information is not available in the provided documents.
+        3. Do not make up information that is not in the context.
         """
 
         model = GenerativeModel(MODEL_ID, system_instruction=system_instruction)
