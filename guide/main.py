@@ -29,13 +29,18 @@ def chat():
         if not session_id or not user_query:
             return jsonify({"error": "Missing session_id or query"}), 400
 
-        # 1. Retrieve Knowledge Base
-        kb_ref = db.collection("knowledge_base").document("latest_knowledge")
-        kb_doc = kb_ref.get()
+        # 1. Retrieve Knowledge Base (All Documents)
+        docs = db.collection("knowledge_base").stream()
         
-        knowledge_context = ""
-        if kb_doc.exists:
-            knowledge_context = kb_doc.to_dict().get("summary", "")
+        summaries = []
+        for doc in docs:
+            doc_data = doc.to_dict()
+            summary = doc_data.get("summary", "")
+            source = doc_data.get("source_file", "Unknown Source")
+            summaries.append(f"--- Source: {source} ---\n{summary}")
+        
+        if summaries:
+            knowledge_context = "\n\n".join(summaries)
         else:
             knowledge_context = "I have not processed any documents yet. Please upload a PDF to the Knowledge Base bucket to get started."
 
