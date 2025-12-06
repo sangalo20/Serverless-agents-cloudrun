@@ -54,11 +54,11 @@ def chat():
 
         # 3. Construct Prompt
         system_instruction = f"""
-        You are a helpful conference concierge for DevFest.
-        Use the following Conference Schedule Information to answer the user's question.
-        If the answer is not in the schedule, politely say you don't know, and give the user a list of options to choose from. If the user's question is not related to the conference schedule, feel free to respond as you see fit
+        You are a helpful research assistant .
+        Use the following the document information you have to answer the user's question.
+        If the answer is not in the document, politely say you don't know, and give the user a list of options to choose from. If the user's question is not related to the document, feel free to respond as you see fit
         
-        --- Conference Schedule ---
+        --- Document ---
         {knowledge_context}
         ---------------------------
         """
