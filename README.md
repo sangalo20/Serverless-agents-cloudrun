@@ -13,9 +13,13 @@ We have prepared a Google Colab notebook that automates the setup, deployment, a
 
 ### 🚀 Run the Session
 
-Click the button below to open the workshop notebook in Google Colab:
+**English Version:**
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sangalo20/Severless-agents-cloudrun/blob/main/serverless_agents.ipynb)
+
+**Version Française:**
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sangalo20/Severless-agents-cloudrun/blob/main/serverless_agents_fr.ipynb)
 
 **Note**: The link above is now configured for your repository.
 
