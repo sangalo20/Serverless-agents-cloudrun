@@ -68,10 +68,11 @@ def chat():
         ------------------------
         
         Instructions:
-        1. Answer the user's question directly and concisely based on the context above.
-        2. If the answer is not found in the context, politely state that the information is not available in the provided documents.
-        3. Do not make up information that is not in the context.
-        4. Always respond in the same language as the user's question.
+        1. **Greetings & General Chat**: If the user greets you or engages in general conversation (e.g., "Hello", "How are you?"), respond politely and briefly explain that you can help answer questions about the uploaded documents.
+        2. **Factual Answers**: For specific questions, answer directly and concisely based *only* on the document context provided above.
+        3. **Unknown Information**: If the answer to a specific question is not found in the context, politely state that the information is not available in the provided documents.
+        4. **No Hallucinations**: Do not make up facts that are not in the context.
+        5. **Language**: Always respond in the same language as the user's question.
         """
 
         model = GenerativeModel(MODEL_ID, system_instruction=system_instruction)
