@@ -38,15 +38,18 @@ def ingest():
         print(f"Event body: {event}")
 
         # Extract bucket and file name from the event
+        bucket_name = None
+        file_name = None
 
-        if 'bucket' in event: # Direct GCS notification format
+        if 'data' in event: # CloudEvents format (Eventarc)
+             bucket_name = event['data'].get('bucket')
+             file_name = event['data'].get('name')
+        
+        if not bucket_name and 'bucket' in event: # Direct GCS notification format
              bucket_name = event['bucket']
              file_name = event['name']
-        elif 'protoPayload' in event: 
-             
-             pass
-        else:
-             
+        
+        if not bucket_name: # Fallback
              bucket_name = event.get('bucket')
              file_name = event.get('name')
 
