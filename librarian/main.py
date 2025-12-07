@@ -24,12 +24,19 @@ def ingest():
     """
     Handles CloudEvents from Eventarc (GCS Object Finalize).
     """
-    print("Event received.")
-    
-    # CloudEvents specification: Content-Type: application/cloudevents+json
+    print(f"Event received.")
+    print(f"Headers: {dict(request.headers)}")
+    print(f"Raw Data: {request.data}")
     
     try:
-        event = request.get_json()
+        event = request.get_json(silent=True)
+        if not event:
+            # Fallback: try to parse raw data as JSON
+            try:
+                event = json.loads(request.data)
+            except json.JSONDecodeError:
+                pass
+        
         if not event:
              msg = "no json body received"
              print(f"error: {msg}")
@@ -41,20 +48,18 @@ def ingest():
         bucket_name = None
         file_name = None
 
-        if 'data' in event: # CloudEvents format (Eventarc)
+        # 1. Check for CloudEvents (Eventarc) structure - 'data' field
+        if 'data' in event: 
              bucket_name = event['data'].get('bucket')
              file_name = event['data'].get('name')
         
-        if not bucket_name and 'bucket' in event: # Direct GCS notification format
-             bucket_name = event['bucket']
-             file_name = event['name']
-        
-        if not bucket_name: # Fallback
+        # 2. Check for direct GCS notification or flattened structure
+        if not bucket_name:
              bucket_name = event.get('bucket')
              file_name = event.get('name')
 
         if not bucket_name or not file_name:
-             msg = "Could not determine bucket or filename from event"
+             msg = f"Could not determine bucket or filename from event. Keys found: {list(event.keys())}"
              print(f"error: {msg}")
              return f"Bad Request: {msg}", 400
 
@@ -76,7 +81,7 @@ def ingest():
         Analyze the attached document.
         Extract a structured summary of the of the most important thing in that document, in the following format:
         - Context
-        - Topics coveredS
+        - Topics covered
         - If there is any action items, list them.
         
         Format the output as a clean, readable text summary that can be used to answer user questions.

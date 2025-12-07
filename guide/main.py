@@ -71,6 +71,7 @@ def chat():
         1. Answer the user's question directly and concisely based on the context above.
         2. If the answer is not found in the context, politely state that the information is not available in the provided documents.
         3. Do not make up information that is not in the context.
+        4. Always respond in the same language as the user's question.
         """
 
         model = GenerativeModel(MODEL_ID, system_instruction=system_instruction)
